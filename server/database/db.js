@@ -22,3 +22,5 @@ async function connectToDatabase() {
 }
 
 module.exports = connectToDatabase;
+// esporto la funzione connectToDatabase che viene importata in index.js
+// le queries sul database si trovano in routers/authRouter
