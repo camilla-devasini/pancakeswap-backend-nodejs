@@ -1,6 +1,6 @@
 const express = require("express");
 const validateForm = require("../controllers/validateForm");
-const pool = require("./../database/db");
+const connection = require("./../database/db");
 const bcrypt = require("bcrypt");
 
 // siamo in authRouter.js --> abbiamo creato route MODULE chiamato authRouter.js
@@ -8,6 +8,7 @@ const router = express.Router();
 
 //url path di signup
 router.post("/signup", async (req, res) => {
+  const pool = await connection();
   validateForm(req, res);
   //queries sul database:
   const existingUser = await pool.query(
@@ -38,6 +39,7 @@ router.post("/signup", async (req, res) => {
 
 //url path di login
 router.post("/login", async (req, res) => {
+  const pool = await connection();
   validateForm(req, res); //callback function che viene invocata quando si ha una richiesta http post with url path "/login"
   //queries sul database:
 
